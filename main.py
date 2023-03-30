@@ -1,6 +1,10 @@
+import visual.visual
+
+
+
 def text_preparation():
-    """Принимает текст из visual VISUAL windows
-    Принимает ключ из visual VISUAL windows
+    """Принимает текст из tests TEST test_en
+    Принимает ключ из tests TEST test_kay
     разделяет на разряды, сохроняет в список
     передает в MAIN encryption"""
     pass
@@ -14,8 +18,8 @@ def encryption():
 
 
 def main():
-    pass
+    visual.visual.windows()
 
 
 if __name__ == "__main__":
-    pass
+    main()
