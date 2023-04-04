@@ -1,15 +1,40 @@
 import tkinter
 from tkinter import *
-
 import main
+
+
 def windows():
     """Основное окно
     2 поля ввода, 2 поля для ключа, 2 кнопки, 2 поля вывода"""
 
     def click_code():
-        """передает текст в tests TEST test_en
-         передает ключ в tests TEST test_kay"""
-        pass
+        """обрабатывает клик, проверят
+        если ошибка передает в visual VISUAL miss_send
+        если ошибок нет MAIN text_preparation"""
+        text_pre = text_entry.get("1.0", "end")
+        text_pre = text_pre.upper()
+        kay_pre = kay_text.get()
+        text_pre_aski = [ord(c) for c in text_pre]
+
+        # проверка на ошибки
+        count = 0
+        if int(kay_pre) not in range(31, 100):
+            count += 1
+        for i in text_pre_aski:
+            if int(i) not in range(31, 92) and int(i) != 10:
+                count += 10
+
+        # передача ошибки
+        if count == 1:
+            miss_send(kay_miss="Неверный ключ!")
+        if count > 1 and count % 2 == 0:
+            miss_send(kay_miss="Только английские буквы и цифры")
+        if count > 1 and count % 2 != 0:
+            miss_send(kay_miss="Миша, всё хуйня, давай по новой ...!")
+
+        # ошибки нет!!! передаем в MAIN
+        if count == 0:
+            main.text_preparation(kay_to_coding=kay_pre, text_to_coding=text_pre)
 
     def click_decode():
         """передает код и ключ в DECODING code_preparation"""
@@ -43,13 +68,13 @@ def windows():
     # поле ввода ключ ТЕКСТА
     kay_text = tkinter.Entry(top, font=14)
     kay_text.grid(row=2, column=0, padx=10, pady=5)
-    lbl_kay_1 = tkinter.Label(top, text="         Введите ключ: (32-99)", font=16)
+    lbl_kay_1 = tkinter.Label(top, text="       Введите ключ: (32-99)", font=16)
     lbl_kay_1.grid(row=2, column=0, sticky="W", padx=10, pady=5)
 
     # поле ввода ключ КОД
     kay_code = tkinter.Entry(top, font=14)
     kay_code.grid(row=2, column=1, padx=10, pady=5)
-    lbl_kay_2 = tkinter.Label(top, text="        Введите ключ: (32-99)", font=16)
+    lbl_kay_2 = tkinter.Label(top, text="       Введите ключ: (32-99)", font=16)
     lbl_kay_2.grid(row=2, column=1, sticky="W", padx=10, pady=5)
 
     # кнопка закодить
@@ -61,6 +86,7 @@ def windows():
     button_decode.grid(row=2, column=1, padx=10, pady=5, sticky="E")
 
     # место под вывод кода
+    text_miss = tkinter.Text()
     lbl_return_code = tkinter.Text(top, font=14, wrap="char")
     lbl_return_code.grid(row=3, column=0, sticky="NESW", padx=10, pady=5)
     top.grid_rowconfigure(3, weight=1)
@@ -70,3 +96,11 @@ def windows():
     lbb_return_text.grid(row=3, column=1, sticky="NESW", padx=10, pady=5)
 
     top.mainloop()
+
+
+def miss_send(kay_miss):
+    """принимает из visual VISUAL windows click_code
+    ошибку, выдает сообшение"""
+    sdfds = tkinter.Text(font=14, wrap="char")
+    sdfds.grid(row=3, column=0, sticky="NESW", padx=10, pady=5)
+    sdfds.insert("1.0", f"{kay_miss}")
