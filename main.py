@@ -18,12 +18,31 @@ def text_preparation(kay_to_coding, text_to_coding):
     if len_last_aski != 0:
         join_text_aski[-1] = join_text_aski[-1] + "32" * len_last_aski
 
+    # вызов
+    encryption(use_kay=kay_to_coding, use_code=join_text_aski)
 
-def encryption():
+
+def encryption(use_kay, use_code):
     """Принимает список из MAIN text_preparation,
     шифрует, соеденяет, передаеет в
     visual VISUAL ****"""
-    pass
+
+    # кодирование
+    coding_text = []
+    for i in use_code:
+        coding_text.append(int(i) * int(use_kay))
+
+    # склейка
+    return_code = "".join(map(str, coding_text))
+
+    # вызов
+    visual.visual.is_work(is_work_code=return_code)
+
+
+
+
+
+
 
 
 def main():

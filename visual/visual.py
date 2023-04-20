@@ -21,10 +21,10 @@ def windows():
         if int(kay_pre) not in range(31, 100):
             count += 1
         for i in text_pre_aski:
-            if int(i) not in range(31, 92) and int(i) != 10:
+            if int(i) not in range(31, 96) and int(i) != 10:
                 count += 10
 
-        # передача ошибки
+        # передача ошибки и вызов
         if count == 1:
             miss_send(kay_miss="Неверный ключ!")
         if count > 1 and count % 2 == 0:
@@ -95,12 +95,21 @@ def windows():
     lbb_return_text = tkinter.Text(top, font=14, wrap="char")
     lbb_return_text.grid(row=3, column=1, sticky="NESW", padx=10, pady=5)
 
+    # вызов
     top.mainloop()
 
 
 def miss_send(kay_miss):
     """принимает из visual VISUAL windows click_code
     ошибку, выдает сообшение"""
-    sdfds = tkinter.Text(font=14, wrap="char")
-    sdfds.grid(row=3, column=0, sticky="NESW", padx=10, pady=5)
-    sdfds.insert("1.0", f"{kay_miss}")
+    masage_miss = tkinter.Text(font=14, wrap="char")
+    masage_miss.grid(row=3, column=0, sticky="NESW", padx=10, pady=5)
+    masage_miss.insert("1.0", f"{kay_miss}")
+
+def is_work(is_work_code):
+    """принимает закодированный текст из MAIN encryption
+    выводит в окно"""
+    masage_print = tkinter.Text(font=14, wrap="char")
+    masage_print.grid(row=3, column=0, sticky="NESW", padx=10, pady=5)
+    masage_print.insert("1.0", f"{is_work_code}")
+
