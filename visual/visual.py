@@ -1,5 +1,7 @@
 import tkinter
 from tkinter import *
+
+import decoding
 import main
 
 
@@ -38,7 +40,13 @@ def windows():
 
     def click_decode():
         """передает код и ключ в DECODING code_preparation"""
-        pass
+
+        # параметры
+        code_pre = code_entry.get("1.0", "end")
+        kay_decoding = kay_code.get()
+
+        # передаем в decoding
+        decoding.code_preparation_decoding(decoding_text=code_pre, decoding_kay=kay_decoding)
 
     # основное окно
     top = tkinter.Tk()
@@ -106,6 +114,7 @@ def miss_send(kay_miss):
     masage_miss.grid(row=3, column=0, sticky="NESW", padx=10, pady=5)
     masage_miss.insert("1.0", f"{kay_miss}")
 
+
 def is_work(is_work_code):
     """принимает закодированный текст из MAIN encryption
     выводит в окно"""
@@ -113,3 +122,10 @@ def is_work(is_work_code):
     masage_print.grid(row=3, column=0, sticky="NESW", padx=10, pady=5)
     masage_print.insert("1.0", f"{is_work_code}")
 
+
+def return_decoding_text(return_dec_text):
+    """принимает декодированный текст из DECODING code_preparation_decoding
+    Выводит в окно"""
+    decoding_print = tkinter.Text(font=14, wrap="char")
+    decoding_print.grid(row=3, column=1, sticky="NESW", padx=10, pady=5)
+    decoding_print.insert("1.0", f"{return_dec_text}")

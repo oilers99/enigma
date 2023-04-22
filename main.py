@@ -39,12 +39,6 @@ def encryption(use_kay, use_code):
     visual.visual.is_work(is_work_code=return_code)
 
 
-
-
-
-
-
-
 def main():
     visual.visual.windows()
 
